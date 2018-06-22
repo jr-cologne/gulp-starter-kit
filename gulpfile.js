@@ -58,6 +58,13 @@ gulp.task('js', () => {
 });
 
 gulp.task('vendor', () => {
+  if (node_dependencies.length === 0) {
+    return new Promise((resolve) => {
+      console.log("No dependencies specified");
+      resolve();
+    });
+  }
+
   return gulp.src(node_dependencies.map(dependency => node_modules_folder + dependency + '/**/*.*'), { base: node_modules_folder })
     .pipe(gulp.dest(dist_node_modules_folder))
     .pipe(browserSync.stream());
