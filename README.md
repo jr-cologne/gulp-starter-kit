@@ -46,7 +46,7 @@ One way of downloading the gulp-starter-kit is by cloning this Git repository. B
 
 Then, follow these instructions:
 
-1. Execute `git clone https://github.com/jr-cologne/gulp-starter-kit.git your-project-name`. This creates a folder called `your-project-name` (change that to your project name) at the current position where your terminal / command prompt is pointing to.
+1. Execute `git clone https://github.com/jr-cologne/gulp-starter-kit.git your-project-name`. This creates a folder called `your-project-name` (change that to your project name) at the current location where your terminal / command prompt is pointing to.
 2. Change your working directory to your project folder by executing `cd your-project-name`.
 3. Install all dependencies by executing `npm install`.
 4. Spin up your web development environment with the command `npm start`.
@@ -59,7 +59,21 @@ git clone https://github.com/jr-cologne/gulp-starter-kit.git your-project-name &
 ```
 
 ### npm init
-Coming soon...
+The other, recommended way of downloading the gulp-starter-kit uses the command `npm init` and the [gulp-starter-kit npm package](https://www.npmjs.com/package/@jr-cologne/create-gulp-starter-kit) as the initializer.
+
+For this, just follow these steps:
+
+1. Create a project folder and navigate into using your terminal / command prompt.
+2. Execute `npm init @jr-cologne/gulp-starter-kit`.
+3. Install all dependencies by executing `npm install`.
+4. Spin up your web development environment with the command `npm start`.
+5. Start coding!
+
+In case you are lazy, just use this command:
+
+```
+mkdir your-project-name && cd your-project-name && npm init @jr-cologne/gulp-starter-kit && npm install && npm start
+```
 
 ## Usage
 ### How can I specify dependencies which are then copied to the `dist` folder?
