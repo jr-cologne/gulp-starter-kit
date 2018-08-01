@@ -1,8 +1,16 @@
 {
-  "name": "gulp-starter-kit",
-  "private": true,
-  "version": "",
+  "name": "@jr-cologne/create-gulp-starter-kit",
+  "version": "0.1.1-alpha",
   "description": "A simple Gulp 4 Starter Kit for modern web development.",
+  "keywords": [
+    "gulp",
+    "gulp-starter-kit",
+    "sass",
+    "babel",
+    "browser-sync",
+    "autoprefixer",
+    "modern-web-dev"
+  ],
   "scripts": {
     "start": "gulp"
   },
@@ -19,7 +27,7 @@
   "devDependencies": {
     "babel-core": "^6.26.3",
     "babel-preset-env": "^1.7.0",
-    "browser-sync": "^2.24.4",
+    "browser-sync": "^2.24.6",
     "del": "^3.0.0",
     "gulp": "^4.0.0",
     "gulp-autoprefixer": "^5.0.0",
@@ -29,6 +37,6 @@
     "gulp-plumber": "^1.2.0",
     "gulp-sass": "^4.0.1",
     "gulp-sourcemaps": "^2.6.4",
-    "gulp-uglify": "^3.0.0"
+    "gulp-uglify": "^3.0.1"
   }
 }

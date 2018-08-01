@@ -1,3 +1,22 @@
+/**
+ * A simple Gulp 4 Starter Kit for modern web development.
+ *
+ * @package @jr-cologne/create-gulp-starter-kit
+ * @author JR Cologne <kontakt@jr-cologne.de>
+ * @copyright 2018 JR Cologne
+ * @license https://github.com/jr-cologne/gulp-starter-kit/blob/master/LICENSE MIT
+ * @version v0.1.1-alpha
+ * @link https://github.com/jr-cologne/gulp-starter-kit GitHub Repository
+ * @link https://www.npmjs.com/package/@jr-cologne/create-gulp-starter-kit npm package site
+ *
+ * ________________________________________________________________________________
+ *
+ * gulpfile.js
+ *
+ * The gulp configuration file.
+ *
+ */
+
 const gulp                      = require('gulp'),
       del                       = require('del'),
       sourcemaps                = require('gulp-sourcemaps'),
