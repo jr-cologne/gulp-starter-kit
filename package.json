@@ -1,6 +1,6 @@
 {
   "name": "@jr-cologne/create-gulp-starter-kit",
-  "version": "0.1.2-alpha",
+  "version": "0.1.4-alpha",
   "description": "A simple Gulp 4 Starter Kit for modern web development.",
   "keywords": [
     "gulp",
@@ -13,6 +13,9 @@
   ],
   "scripts": {
     "start": "gulp"
+  },
+  "bin": {
+    "create-gulp-starter-kit": "./bin/install.js"
   },
   "repository": {
     "type": "git",
