@@ -7,6 +7,7 @@ const { exec } = require('child_process');
 const packageJson = require('../package.json');
 
 const scripts = `"start": "gulp"`;
+const gitignore = `node_modules\ndist`;
 
 const getDependencies = dependencies =>
   Object.entries(dependencies)
@@ -42,13 +43,15 @@ exec(
       fs.writeFile(packageJSON, data, writeErr => writeErr || true);
     });
 
-    const filesToCopy = [ 'gulpfile.js', '.editorconfig', '.gitignore' ];
+    const filesToCopy = [ 'gulpfile.js', '.editorconfig' ];
 
     for (let i = 0; i < filesToCopy.length; i++) {
       fs
         .createReadStream(path.join(__dirname, `../${ filesToCopy[i] }`))
         .pipe(fs.createWriteStream(`${ projectFolder }/${ filesToCopy[i] }`));
     }
+
+    fs.writeFile(`${ projectFolder }/.gitignore`, gitignore, writeErr => writeErr || true);
 
     console.log('npm init successful - Your npm package has been initialized');
 
