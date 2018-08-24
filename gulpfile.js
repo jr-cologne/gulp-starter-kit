@@ -5,7 +5,7 @@
  * @author JR Cologne <kontakt@jr-cologne.de>
  * @copyright 2018 JR Cologne
  * @license https://github.com/jr-cologne/gulp-starter-kit/blob/master/LICENSE MIT
- * @version v0.1.4-alpha
+ * @version v0.1.5-alpha
  * @link https://github.com/jr-cologne/gulp-starter-kit GitHub Repository
  * @link https://www.npmjs.com/package/@jr-cologne/create-gulp-starter-kit npm package site
  *
