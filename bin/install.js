@@ -13,8 +13,7 @@ const getDependencies = dependencies =>
     .map(dependency => `${ dependency[0] }@${ dependency[1] }`)
     .toString()
     .replace(/,/g, ' ')
-    .replace(/^/g, '')
-    .replace(/fs-extra[^\s]+/g, '');
+    .replace(/^/g, '');
 
 console.log('npm init - Initializing your project...');
 
