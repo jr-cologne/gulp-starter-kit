@@ -8,6 +8,7 @@ Here is a list of the current features:
 - Copy html files from `src` to `dist` directory
 - Compile sass to css, autoprefix, minify css and put it inside `dist` directory
 - Compile ES6+ to ES5, concatenate js files and minify code
+- Compress and copy images into `dist` directory
 - Copy specified dependencies from `node_modules` directory into `node_modules` folder inside `dist` directory
 - Spin up local dev server at `http://localhost:3000` including auto-reloading
 
@@ -34,6 +35,7 @@ These [npm](https://www.npmjs.com/) packages are used in the gulp-starter-kit:
 - [gulp-sass](https://www.npmjs.com/package/gulp-sass)
 - [gulp-sourcemaps](https://www.npmjs.com/package/gulp-sourcemaps)
 - [gulp-uglify](https://www.npmjs.com/package/gulp-uglify)
+- [gulp-imagemin](https://www.npmjs.com/package/gulp-imagemin)
 
 For more information, take a look at the [package.json]((https://github.com/jr-cologne/gulp-starter-kit/blob/master/package.json)) file.
 
@@ -74,7 +76,16 @@ In case you are lazy, just use this command:
 npm init @jr-cologne/gulp-starter-kit && cd your-project-name && npm start
 ```
 
-## Usage
+## Usage / FAQ
+### What types of images are supported?
+The following types of images are currently supported:
+
+- PNG
+- JPG / JPEG
+- GIF
+- SVG
+- ICO (not compressed)
+
 ### How can I specify dependencies which are then copied to the `dist` folder?
 You can specify your dependencies inside `gulpfile.js`.
 Just install your dependency via npm, look for a variable called `node_dependencies` and add the package name of your dependency to the array:
