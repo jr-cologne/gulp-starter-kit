@@ -9,7 +9,8 @@ Here is a list of the current features:
 - Compile sass to css, autoprefix, minify css and put it inside `dist` directory
 - Compile ES6+ to ES5, concatenate js files and minify code
 - Compress and copy images into `dist` directory
-- Copy specified dependencies from `node_modules` directory into `node_modules` folder inside `dist` directory
+- Copy dependencies specified in `package.json` from `src/node_modules` directory into `node_modules` folder inside `dist` directory
+- Import dependencies into your application with ES6 modules
 - Spin up local dev server at `http://localhost:3000` including auto-reloading
 
 ## Requirements
@@ -36,6 +37,7 @@ These [npm](https://www.npmjs.com/) packages are used in the gulp-starter-kit:
 - [gulp-sourcemaps](https://www.npmjs.com/package/gulp-sourcemaps)
 - [gulp-uglify](https://www.npmjs.com/package/gulp-uglify)
 - [gulp-imagemin](https://www.npmjs.com/package/gulp-imagemin)
+- [webpack-stream](https://www.npmjs.com/package/webpack-stream)
 
 For more information, take a look at the [package.json]((https://github.com/jr-cologne/gulp-starter-kit/blob/master/package.json)) file.
 
@@ -87,13 +89,15 @@ The following types of images are currently supported:
 - ICO (not compressed)
 
 ### How can I specify dependencies which are then copied to the `dist` folder?
-You can specify your dependencies inside `gulpfile.js`.
-Just install your dependency via npm, look for a variable called `node_dependencies` and add the package name of your dependency to the array:
+You don't need to specify your dependencies anywhere else than in your `package.json` file.
+Just install your dependencies via npm and all your dependencies get automatically loaded and copied into the `dist` folder.
+
+### How can I load dependencies inside my application?
+ES6 modules are supported by the `gulp-starter-kit`.
+Just install your dependencies and import them like so:
 
 ```js
-node_dependencies = [
-  'jquery'
-];
+import axios from 'axios';
 ```
 
 ## Contributing
