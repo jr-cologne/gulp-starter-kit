@@ -1,11 +1,13 @@
+import axios from 'axios';
+
 window.addEventListener('load', () => {
 
   const api = 'http://www.colr.org/json/color/random';
   const body = document.querySelector('body');
 
   function randomColor() {
-    fetch(api).then(res => res.json()).then(data => {
-      let color = data.colors[0].hex;
+    axios.get(api).then(res => {
+      let color = res.data.colors[0].hex;
 
       if (!color) {
         console.error('Random color could not be fetched.');

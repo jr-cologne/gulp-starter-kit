@@ -5,7 +5,7 @@
  * @author JR Cologne <kontakt@jr-cologne.de>
  * @copyright 2018 JR Cologne
  * @license https://github.com/jr-cologne/gulp-starter-kit/blob/master/LICENSE MIT
- * @version v0.2.1-alpha
+ * @version v0.2.2-alpha
  * @link https://github.com/jr-cologne/gulp-starter-kit GitHub Repository
  * @link https://www.npmjs.com/package/@jr-cologne/create-gulp-starter-kit npm package site
  *
@@ -25,6 +25,7 @@ const gulp                      = require('gulp'),
       autoprefixer              = require('gulp-autoprefixer'),
       cssnano                   = require('gulp-cssnano'),
       babel                     = require('gulp-babel'),
+      webpack                   = require('webpack-stream'),
       uglify                    = require('gulp-uglify'),
       concat                    = require('gulp-concat'),
       imagemin                  = require('gulp-imagemin'),
@@ -37,9 +38,7 @@ const gulp                      = require('gulp'),
       node_modules_folder       = './node_modules/',
       dist_node_modules_folder  = dist_folder + 'node_modules/',
 
-      node_dependencies         = [
-        // 'package-name'
-      ];
+      node_dependencies         = Object.keys(require('./package.json').dependencies);
 
 gulp.task('clear', () => del([ dist_folder ]));
 
@@ -65,8 +64,11 @@ gulp.task('sass', () => {
 
 gulp.task('js', () => {
   return gulp.src([ src_assets_folder + 'js/**/*.js' ])
+    .pipe(plumber())
+    .pipe(webpack({
+      mode: 'production'
+    }))
     .pipe(sourcemaps.init())
-      .pipe(plumber())
       .pipe(babel({
         presets: [ 'env' ]
       }))
