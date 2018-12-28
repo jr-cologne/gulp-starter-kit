@@ -1,6 +1,6 @@
 {
   "name": "@jr-cologne/create-gulp-starter-kit",
-  "version": "0.2.1-alpha",
+  "version": "0.3.0-alpha",
   "description": "A simple Gulp 4 Starter Kit for modern web development.",
   "keywords": [
     "gulp",
@@ -11,7 +11,9 @@
     "autoprefixer",
     "modern-web-dev",
     "imagemin",
-    "sourcemaps"
+    "sourcemaps",
+    "webpack-stream",
+    "es6-modules"
   ],
   "scripts": {
     "start": "gulp"
@@ -43,9 +45,11 @@
     "gulp-plumber": "^1.2.1",
     "gulp-sass": "^4.0.2",
     "gulp-sourcemaps": "^2.6.4",
-    "gulp-uglify": "^3.0.1"
+    "gulp-uglify": "^3.0.1",
+    "webpack-stream": "^5.2.1"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "fs-extra": "^7.0.1"
   }
 }
