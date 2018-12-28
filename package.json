@@ -12,7 +12,8 @@
     "modern-web-dev",
     "imagemin",
     "sourcemaps",
-    "webpack-stream"
+    "webpack-stream",
+    "es6-modules"
   ],
   "scripts": {
     "start": "gulp"
