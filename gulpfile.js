@@ -5,7 +5,7 @@
  * @author JR Cologne <kontakt@jr-cologne.de>
  * @copyright 2018 JR Cologne
  * @license https://github.com/jr-cologne/gulp-starter-kit/blob/master/LICENSE MIT
- * @version v0.3.0-alpha
+ * @version v0.3.1-alpha
  * @link https://github.com/jr-cologne/gulp-starter-kit GitHub Repository
  * @link https://www.npmjs.com/package/@jr-cologne/create-gulp-starter-kit npm package site
  *
@@ -38,7 +38,7 @@ const gulp                      = require('gulp'),
       node_modules_folder       = './node_modules/',
       dist_node_modules_folder  = dist_folder + 'node_modules/',
 
-      node_dependencies         = Object.keys(require('./package.json').dependencies);
+      node_dependencies         = Object.keys(require('./package.json').dependencies || {});
 
 gulp.task('clear', () => del([ dist_folder ]));
 
