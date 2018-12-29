@@ -75,7 +75,7 @@ For this, just follow these steps:
 In case you are lazy, just use this command:
 
 ```
-npm init @jr-cologne/gulp-starter-kit && cd your-project-name && npm start
+npm init @jr-cologne/gulp-starter-kit your-project-name && cd your-project-name && npm start
 ```
 
 ## Usage / FAQ
