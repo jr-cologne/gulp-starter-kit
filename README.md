@@ -5,7 +5,7 @@ A simple Gulp 4 Starter Kit for modern web development.
 This Gulp Starter Kit provides a simple way of setting up a modern web development environment.
 Here is a list of the current features:
 
-- Copy html files from `src` to `dist` directory
+- Copy HTML files from `src` to `dist` directory
 - Compile Sass to CSS, autoprefix, minify CSS and put it inside `dist` directory
 - Compile ES6+ to ES5, concatenate JS files and minify code
 - Compress and copy images into `dist` directory
