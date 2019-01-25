@@ -23,8 +23,8 @@ This should be installed on your computer in order to get up and running:
 ## Dependencies
 These [npm](https://www.npmjs.com/) packages are used in the Gulp Starter Kit:
 
-- [babel-core](https://www.npmjs.com/package/babel-core)
-- [babel-preset-env](https://www.npmjs.com/package/babel-preset-env)
+- [@babel/core](https://www.npmjs.com/package/@babel/core)
+- [@babel/preset-env](https://www.npmjs.com/package/@babel/preset-env)
 - [browser-sync](https://www.npmjs.com/package/browser-sync)
 - [del](https://www.npmjs.com/package/del)
 - [gulp](https://www.npmjs.com/package/gulp)
