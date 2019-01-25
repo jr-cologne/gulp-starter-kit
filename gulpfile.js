@@ -70,7 +70,7 @@ gulp.task('js', () => {
     }))
     .pipe(sourcemaps.init())
       .pipe(babel({
-        presets: [ 'env' ]
+        presets: [ '@babel/env' ]
       }))
       .pipe(concat('all.js'))
       .pipe(uglify())
