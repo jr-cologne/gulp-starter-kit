@@ -79,6 +79,12 @@ git clone https://github.com/jr-cologne/gulp-starter-kit.git your-project-name &
 ```
 
 ## Usage / FAQ
+### What kinds of build scripts does the Gulp Starter Kit offer?
+The Gulp Starter Kit offers two different build scripts:
+
+1. `npm run build`: This is used to build all files and run all tasks without serving a development server and watching for changes.
+2. `npm start`: This is the normal development script used to build all files and run all tasks, but also to serve a development server and watch for changes.
+
 ### What types of images are supported?
 The following types of images are currently supported:
 
