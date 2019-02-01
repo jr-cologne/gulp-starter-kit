@@ -5,7 +5,7 @@
  * @author JR Cologne <kontakt@jr-cologne.de>
  * @copyright 2018 JR Cologne
  * @license https://github.com/jr-cologne/gulp-starter-kit/blob/master/LICENSE MIT
- * @version v0.3.2-alpha
+ * @version v0.4.0-alpha
  * @link https://github.com/jr-cologne/gulp-starter-kit GitHub Repository
  * @link https://www.npmjs.com/package/@jr-cologne/create-gulp-starter-kit npm package site
  *
@@ -115,18 +115,25 @@ gulp.task('serve', () => {
 });
 
 gulp.task('watch', () => {
-  let watch = [
-    src_folder + '**/*.html',
-    src_assets_folder + 'sass/**/*.sass',
-    src_assets_folder + 'js/**/*.js',
+  const watchImages = [
     src_assets_folder + 'images/**/*.+(png|jpg|jpeg|gif|svg|ico)'
   ];
 
+  const watchVendor = [];
+
   node_dependencies.forEach(dependency => {
-    watch.push(node_modules_folder + dependency + '/**/*.*');
+    watchVendor.push(node_modules_folder + dependency + '/**/*.*');
   });
 
+  const watch = [
+    src_folder + '**/*.html',
+    src_assets_folder + 'sass/**/*.sass',
+    src_assets_folder + 'js/**/*.js'
+  ];
+
   gulp.watch(watch, gulp.series('dev')).on('change', browserSync.reload);
+  gulp.watch(watchImages, gulp.series('images')).on('change', browserSync.reload);
+  gulp.watch(watchVendor, gulp.series('vendor')).on('change', browserSync.reload);
 });
 
 gulp.task('default', gulp.series('build', gulp.parallel('serve', 'watch')));
