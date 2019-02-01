@@ -16,7 +16,8 @@
     "es6-modules"
   ],
   "scripts": {
-    "start": "gulp"
+    "start": "gulp",
+    "build": "gulp build"
   },
   "bin": {
     "create-gulp-starter-kit": "./bin/install.js"

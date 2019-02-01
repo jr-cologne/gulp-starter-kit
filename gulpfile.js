@@ -102,6 +102,8 @@ gulp.task('vendor', () => {
 
 gulp.task('build', gulp.series('clear', 'html', 'sass', 'js', 'images', 'vendor'));
 
+gulp.task('dev', gulp.series('html', 'sass', 'js'));
+
 gulp.task('serve', () => {
   return browserSync.init({
     server: {
@@ -124,7 +126,7 @@ gulp.task('watch', () => {
     watch.push(node_modules_folder + dependency + '/**/*.*');
   });
 
-  gulp.watch(watch, gulp.series('build')).on('change', browserSync.reload);
+  gulp.watch(watch, gulp.series('dev')).on('change', browserSync.reload);
 });
 
 gulp.task('default', gulp.series('build', gulp.parallel('serve', 'watch')));
