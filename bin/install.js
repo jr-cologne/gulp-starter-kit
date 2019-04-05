@@ -17,7 +17,7 @@ const projectFolder = process.argv[2];
  * @param {string} name
  * @return {boolean}
  */
-const checkProjectFolder = (name) => name;
+const checkProjectFolder = (name) => name.length > 0;
 
 /**
  * Initialize project
@@ -91,7 +91,7 @@ const installDependencies = dependencies => {
 
     exec(
       `cd ${ projectFolder } && npm i --save-dev ${ dependencies }`,
-      (npmErr, npmStdout, npmStderr) => {
+      (npmErr, npmStdout) => {
         if (npmErr) {
           console.error(
             `Oops, something went wrong installing the dependencies:
@@ -140,7 +140,7 @@ const install = async (projectFolder, dependencies) => {
 
   console.log('Installing dependencies - This might take a few minutes...');
 
-  if (! await installDependencies(dependencies)) return;
+  if (! await installDependencies(dependencies)) return false;
 
   console.log('Dependency installation successful - All dependencies have been installed');
 
@@ -151,7 +151,7 @@ const install = async (projectFolder, dependencies) => {
   console.log('Copying additional files successful');
 
   return true;
-}
+};
 
 if (!checkProjectFolder(projectFolder)) {
   console.error('Oops, looks like you have not specified any project name. Please make sure to do that.');

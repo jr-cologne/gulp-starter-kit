@@ -6,7 +6,7 @@ This Gulp Starter Kit provides a simple way of setting up a modern web developme
 Here is a list of the current features:
 
 - Copy HTML files from `src` to `dist` directory
-- Compile Sass to CSS, autoprefix, minify CSS and put it inside `dist` directory
+- Compile Sass/SCSS to CSS, autoprefix, minify CSS and put it inside `dist` directory
 - Compile ES6+ to ES5, concatenate JS files and minify code
 - Compress and copy images into `dist` directory
 - Copy dependencies specified in `package.json` from `src/node_modules` directory into `node_modules` folder inside `dist` directory
@@ -18,7 +18,6 @@ This should be installed on your computer in order to get up and running:
 
 - [Node.js](https://nodejs.org/en/)
 - [Gulp 4](https://gulpjs.com/)
-- [Sass](http://sass-lang.com/)
 
 ## Dependencies
 These [npm](https://www.npmjs.com/) packages are used in the Gulp Starter Kit:
@@ -84,6 +83,9 @@ The Gulp Starter Kit offers two different build scripts:
 
 1. `npm run build`: This is used to build all files and run all tasks without serving a development server and watching for changes.
 2. `npm start`: This is the normal development script used to build all files and run all tasks, but also to serve a development server and watch for changes.
+
+### How can I use SCSS instead of Sass?
+In case you prefer to use SCSS over Sass, you can simply create a new directory `src/assets/scss` which is where all your SCSS files have to be placed. After you have moved all your code to the new folder, just make sure to delete the `sass` directory and everything should work as expected.
 
 ### What types of images are supported?
 The following types of images are currently supported:
