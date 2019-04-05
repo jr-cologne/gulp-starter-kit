@@ -3,9 +3,9 @@
  *
  * @package @jr-cologne/create-gulp-starter-kit
  * @author JR Cologne <kontakt@jr-cologne.de>
- * @copyright 2018 JR Cologne
+ * @copyright 2019 JR Cologne
  * @license https://github.com/jr-cologne/gulp-starter-kit/blob/master/LICENSE MIT
- * @version v0.4.0-alpha
+ * @version v0.5.0-alpha
  * @link https://github.com/jr-cologne/gulp-starter-kit GitHub Repository
  * @link https://www.npmjs.com/package/@jr-cologne/create-gulp-starter-kit npm package site
  *
@@ -49,7 +49,10 @@ gulp.task('html', () => {
 });
 
 gulp.task('sass', () => {
-  return gulp.src([ src_assets_folder + 'sass/**/*.sass' ])
+  return gulp.src([
+    src_assets_folder + 'sass/**/*.sass',
+    src_assets_folder + 'scss/**/*.scss'
+  ])
     .pipe(sourcemaps.init())
       .pipe(plumber())
       .pipe(sass())
@@ -128,6 +131,7 @@ gulp.task('watch', () => {
   const watch = [
     src_folder + '**/*.html',
     src_assets_folder + 'sass/**/*.sass',
+    src_assets_folder + 'scss/**/*.scss',
     src_assets_folder + 'js/**/*.js'
   ];
 
