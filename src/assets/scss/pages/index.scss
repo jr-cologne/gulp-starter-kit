@@ -1,0 +1,28 @@
+@import "../_includes";
+
+body {
+  display: flex;
+  padding: 3%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  transition: background-color 0.3s linear;
+}
+.title {
+  font-size: 8rem;
+  font-weight: 100;
+}
+.description {
+  strong {
+    display: block;
+    margin-top: 3%;
+    font-size: 3rem;
+    font-weight: 300;
+  }
+}
+.image {
+  width: 500px;
+  margin-top: 3%;
+  box-shadow: 1px 0 10px rgba(0, 0, 0, 0.3);
+}
