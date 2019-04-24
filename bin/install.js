@@ -55,7 +55,7 @@ const getProjectFolderFromName = (projectName) => options.installInCurrentDir ? 
  */
 const init = projectFolder => {
   return new Promise((resolve, reject) => {
-    let initCommand = `${ projectFolder === '' ? 'cd . && ' : '' }npm init -f`;
+    let initCommand = 'npm init -f';
 
     if (projectFolder !== '') {
       initCommand = `mkdir ${ projectFolder } && cd ${ projectFolder } && ` + initCommand.substr(0);
@@ -72,7 +72,7 @@ const init = projectFolder => {
           reject(false);
         }
 
-        const packageJson = path.join(__dirname, `${ projectFolder }/package.json`);
+        const packageJson = `${ projectFolder }/package.json`;
 
         fs.readFile(packageJson, (readErr, file) => {
           if (readErr) throw readErr;
