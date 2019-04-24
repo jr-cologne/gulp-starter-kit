@@ -9,26 +9,62 @@ const dependencies = require('../package.json').devDependencies;
 const scripts = `"start": "gulp",\n\t\t"build": "gulp build"`;
 const gitignore = `node_modules\ndist`;
 
-const projectFolder = process.argv[2];
+const projectName = process.argv[2];
 
 /**
- * Check whether project folder is valid
+ * Get flags from arguments
  *
- * @param {string} name
- * @return {boolean}
+ * @param {Array} args
+ * @return {Array}
  */
-const checkProjectFolder = (name) => name.length > 0;
+const getFlagsFromArguments = args =>
+  args.slice(3, args.length)
+    .filter((val, index) => val.startsWith('--'));
 
 /**
- * Initialize project
+ * Get options from flags
  *
- * @param {string} projectFolder
+ * @param {Array} flags
+ * @return {Object}
+ */
+const getOptionsFromFlags = flags => ({
+  installInCurrentDir: flags.includes('--current-dir'),
+});
+
+/**
+ * Check whether project name is valid
+ *
+ * @param {String} name
+ * @return {Boolean}
+ */
+const checkProjectName = (name) => name !== undefined && name.length > 0;
+
+/**
+ * Get project folder from name
+ *
+ * @param {String} projectName
+ * @return {String}
+ */
+const getProjectFolderFromName = (projectName) => options.installInCurrentDir ? './' : `./${ projectName }`;
+
+/**
+ * Initialize project in specified folder
+ *
+ * @param {String} projectFolder
  * @return {Promise<boolean>}
  */
 const init = projectFolder => {
   return new Promise((resolve, reject) => {
+    let initCommand = `npm init -f`;
+
+    console.log(projectFolder, options);
+
+    if (projectFolder !== './') {
+      initCommand = `mkdir ${ projectFolder } && cd ${ projectFolder } && ` + initCommand.substr(0);
+    }
+
     exec(
-      `mkdir ${ projectFolder } && cd ${ projectFolder } && npm init -f`,
+      initCommand,
       (err, stdout, stderr) => {
         if (err) {
           console.error(
@@ -50,7 +86,15 @@ const init = projectFolder => {
           fs.writeFile(packageJson, data, writeErr => writeErr || true);
         });
 
-        const filesToCopy = [ 'gulpfile.js', '.editorconfig' ];
+        const filesToCopy = [
+          'gulpfile.js',
+          '.editorconfig'
+        ].filter((file, index) =>
+          fs.existsSync(path.join(__dirname, `../${ file }`)));
+
+        console.log(filesToCopy);
+
+        process.exit();
 
         for (let i = 0; i < filesToCopy.length; i++) {
           fs
@@ -69,8 +113,8 @@ const init = projectFolder => {
 /**
  * Get a formatted string of all dependencies to install
  *
- * @param {object} dependencies
- * @return {string}
+ * @param {Object} dependencies
+ * @return {String}
  */
 const getFormattedDependencies = dependencies =>
   Object.entries(dependencies)
@@ -82,15 +126,16 @@ const getFormattedDependencies = dependencies =>
 /**
  * Install dependencies
  *
- * @param {object} dependencies
+ * @param {Object} dependencies
+ * @param {String} directory
  * @return {Promise<boolean>}
  */
-const installDependencies = dependencies => {
+const installDependencies = (dependencies, directory) => {
   return new Promise((resolve, reject) => {
     dependencies = getFormattedDependencies(dependencies);
 
     exec(
-      `cd ${ projectFolder } && npm i --save-dev ${ dependencies }`,
+      `cd ${ directory } && npm i --save-dev ${ dependencies }`,
       (npmErr, npmStdout) => {
         if (npmErr) {
           console.error(
@@ -109,14 +154,15 @@ const installDependencies = dependencies => {
 };
 
 /**
- * Copy additional files
+ * Copy additional files into directory
  *
- * @return {boolean}
+ * @param {String} directory
+ * @return {Boolean}
  */
-const copyAdditionalFiles = async () => {
+const copyAdditionalFiles = async directory => {
   try {
     await fs
-      .copy(path.join(__dirname, '../src'), `${projectFolder}/src`);
+      .copy(path.join(__dirname, '../src'), `${ directory }/src`);
     return true;
   } catch (err) {
     console.error(err);
@@ -125,14 +171,17 @@ const copyAdditionalFiles = async () => {
 };
 
 /**
- * Install gulp-starter-kit into project folder
+ * Install gulp-starter-kit project
  *
- * @param {string} projectFolder
- * @param {object} dependencies
+ * @param {String} projectName
+ * @param {Object} dependencies
+ * @param {Object} options
  * @return {Promise<boolean>}
  */
-const install = async (projectFolder, dependencies) => {
+const install = async (projectName, dependencies, options) => {
   console.log('npm init - Initializing your project...');
+
+  const projectFolder = getProjectFolderFromName(projectName);
 
   if (! await init(projectFolder)) return false;
 
@@ -140,24 +189,28 @@ const install = async (projectFolder, dependencies) => {
 
   console.log('Installing dependencies - This might take a few minutes...');
 
-  if (! await installDependencies(dependencies)) return false;
+  if (! await installDependencies(dependencies, projectFolder)) return false;
 
   console.log('Dependency installation successful - All dependencies have been installed');
 
   console.log('Copying additional files...');
 
-  if (!copyAdditionalFiles()) return false;
+  if (!copyAdditionalFiles(projectFolder)) return false;
 
   console.log('Copying additional files successful');
 
   return true;
 };
 
-if (!checkProjectFolder(projectFolder)) {
+const options = getOptionsFromFlags(
+  getFlagsFromArguments(process.argv)
+);
+
+if (!checkProjectName(projectName)) {
   console.error('Oops, looks like you have not specified any project name. Please make sure to do that.');
   return;
 }
 
-install(projectFolder, dependencies).then(() => {
+install(projectName, dependencies, options).then(() => {
   console.log(`\nAll done!\nYour project has been set up to the ${ projectFolder } folder.\nHappy Coding!`);
 });
