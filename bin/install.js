@@ -45,7 +45,7 @@ const checkProjectName = (name) => name !== undefined && name.length > 0;
  * @param {String} projectName
  * @return {String}
  */
-const getProjectFolderFromName = (projectName) => options.installInCurrentDir ? './' : `./${ projectName }`;
+const getProjectFolderFromName = (projectName) => options.installInCurrentDir ? '' : `${ projectName }`;
 
 /**
  * Initialize project in specified folder
@@ -57,9 +57,7 @@ const init = projectFolder => {
   return new Promise((resolve, reject) => {
     let initCommand = `npm init -f`;
 
-    console.log(projectFolder, options);
-
-    if (projectFolder !== './') {
+    if (projectFolder !== '') {
       initCommand = `mkdir ${ projectFolder } && cd ${ projectFolder } && ` + initCommand.substr(0);
     }
 
@@ -90,11 +88,7 @@ const init = projectFolder => {
           'gulpfile.js',
           '.editorconfig'
         ].filter((file, index) =>
-          fs.existsSync(path.join(__dirname, `../${ file }`)));
-
-        console.log(filesToCopy);
-
-        process.exit();
+          !fs.existsSync(path.join(__dirname, `../${ file }`)));
 
         for (let i = 0; i < filesToCopy.length; i++) {
           fs
@@ -102,7 +96,9 @@ const init = projectFolder => {
             .pipe(fs.createWriteStream(`${ projectFolder }/${ filesToCopy[i] }`));
         }
 
-        fs.writeFile(`${ projectFolder }/.gitignore`, gitignore, writeErr => writeErr || true);
+        if (!fs.existsSync(`${ projectFolder }/.gitignore`)) {
+          fs.writeFile(`${projectFolder}/.gitignore`, gitignore, writeErr => writeErr || true);
+        }
 
         resolve(true);
       }
@@ -176,7 +172,7 @@ const copyAdditionalFiles = async directory => {
  * @param {String} projectName
  * @param {Object} dependencies
  * @param {Object} options
- * @return {Promise<boolean>}
+ * @return {Promise<boolean>,Promise<string>}
  */
 const install = async (projectName, dependencies, options) => {
   console.log('npm init - Initializing your project...');
@@ -199,7 +195,7 @@ const install = async (projectName, dependencies, options) => {
 
   console.log('Copying additional files successful');
 
-  return true;
+  return projectFolder;
 };
 
 const options = getOptionsFromFlags(
@@ -213,4 +209,6 @@ if (!checkProjectName(projectName)) {
 
 install(projectName, dependencies, options).then(() => {
   console.log(`\nAll done!\nYour project has been set up to the ${ projectFolder } folder.\nHappy Coding!`);
+}).catch(() => {
+  console.error('Oops, looks like something went wrong installing the Gulp Starter Kit.');
 });
