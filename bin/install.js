@@ -55,7 +55,7 @@ const getProjectFolderFromName = (projectName) => options.installInCurrentDir ? 
  */
 const init = projectFolder => {
   return new Promise((resolve, reject) => {
-    let initCommand = `npm init -f`;
+    let initCommand = `${ projectFolder === '' ? 'cd . && ' : '' }npm init -f`;
 
     if (projectFolder !== '') {
       initCommand = `mkdir ${ projectFolder } && cd ${ projectFolder } && ` + initCommand.substr(0);
