@@ -110,9 +110,10 @@ gulp.task('dev', gulp.series('html', 'sass', 'js'));
 gulp.task('serve', () => {
   return browserSync.init({
     server: {
-      baseDir: [ 'dist' ],
-      port: 3000
+      baseDir: [ 'dist' ]
+      // port: 3000 <--- moved port from here...
     },
+    port: 3000, // <--- ...to here
     open: false
   });
 });
