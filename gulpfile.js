@@ -111,9 +111,8 @@ gulp.task('serve', () => {
   return browserSync.init({
     server: {
       baseDir: [ 'dist' ]
-      // port: 3000 <--- moved port from here...
     },
-    port: 3000, // <--- ...to here
+    port: 3000,
     open: false
   });
 });
