@@ -1,12 +1,13 @@
 {
   "name": "@jr-cologne/create-gulp-starter-kit",
-  "version": "0.5.1-alpha",
+  "version": "0.7.0-alpha",
   "description": "A simple Gulp 4 Starter Kit for modern web development.",
   "keywords": [
     "gulp",
     "gulp-starter-kit",
     "sass",
     "scss",
+    "pug",
     "babel",
     "browser-sync",
     "autoprefixer",
