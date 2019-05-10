@@ -5,7 +5,7 @@
  * @author JR Cologne <kontakt@jr-cologne.de>
  * @copyright 2019 JR Cologne
  * @license https://github.com/jr-cologne/gulp-starter-kit/blob/master/LICENSE MIT
- * @version v0.7.0-alpha
+ * @version v0.8.0-alpha
  * @link https://github.com/jr-cologne/gulp-starter-kit GitHub Repository
  * @link https://www.npmjs.com/package/@jr-cologne/create-gulp-starter-kit npm package site
  *
@@ -50,7 +50,7 @@ gulp.task('html', () => {
 });
 
 gulp.task('pug', () => {
-  return gulp.src([ src_folder + '**/*.pug' ], { base: src_folder })
+  return gulp.src([ src_folder + 'pug/**/!(_)*.pug' ], { base: src_folder + 'pug' })
     .pipe(plumber())
     .pipe(pug())
     .pipe(gulp.dest(dist_folder))
@@ -139,7 +139,7 @@ gulp.task('watch', () => {
 
   const watch = [
     src_folder + '**/*.html',
-    src_folder + '**/*.pug',
+    src_folder + 'pug/**/*.pug',
     src_assets_folder + 'sass/**/*.sass',
     src_assets_folder + 'scss/**/*.scss',
     src_assets_folder + 'js/**/*.js'
