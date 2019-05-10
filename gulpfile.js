@@ -50,7 +50,7 @@ gulp.task('html', () => {
 });
 
 gulp.task('pug', () => {
-  return gulp.src([ src_folder + '**/*.pug' ], { base: src_folder })
+  return gulp.src([ src_folder + 'pug/**/!(_)*.pug' ], { base: src_folder + 'pug' })
     .pipe(plumber())
     .pipe(pug())
     .pipe(gulp.dest(dist_folder))
@@ -139,7 +139,7 @@ gulp.task('watch', () => {
 
   const watch = [
     src_folder + '**/*.html',
-    src_folder + '**/*.pug',
+    src_folder + 'pug/**/*.pug',
     src_assets_folder + 'sass/**/*.sass',
     src_assets_folder + 'scss/**/*.scss',
     src_assets_folder + 'js/**/*.js'
