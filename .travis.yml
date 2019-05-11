@@ -9,4 +9,3 @@ before_script:
   - npm install -g gulp-cli
 script:
   - npm run build
-  - npm start
