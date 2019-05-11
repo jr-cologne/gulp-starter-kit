@@ -23,6 +23,7 @@ const gulp                      = require('gulp'),
       plumber                   = require('gulp-plumber'),
       sass                      = require('gulp-sass'),
       less                      = require('gulp-less'),
+      stylus                    = require('gulp-stylus'),
       autoprefixer              = require('gulp-autoprefixer'),
       cssnano                   = require('gulp-cssnano'),
       babel                     = require('gulp-babel'),
@@ -89,6 +90,18 @@ gulp.task('less', () => {
     .pipe(browserSync.stream());
 });
 
+gulp.task('stylus', () => {
+  return gulp.src([ src_assets_folder + 'stylus/**/!(_)*.styl'])
+    .pipe(sourcemaps.init())
+      .pipe(plumber())
+      .pipe(stylus())
+      .pipe(autoprefixer(autoprefixer_options))
+      .pipe(cssnano())
+    .pipe(sourcemaps.write('.'))
+    .pipe(gulp.dest(dist_assets_folder + 'css'))
+    .pipe(browserSync.stream());
+});
+
 gulp.task('js', () => {
   return gulp.src([ src_assets_folder + 'js/**/*.js' ])
     .pipe(plumber())
@@ -127,9 +140,9 @@ gulp.task('vendor', () => {
     .pipe(browserSync.stream());
 });
 
-gulp.task('build', gulp.series('clear', 'html', 'pug', 'sass', 'less', 'js', 'images', 'vendor'));
+gulp.task('build', gulp.series('clear', 'html', 'pug', 'sass', 'less', 'stylus', 'js', 'images', 'vendor'));
 
-gulp.task('dev', gulp.series('html', 'pug', 'sass', 'less', 'js'));
+gulp.task('dev', gulp.series('html', 'pug', 'sass', 'less', 'stylus', 'js'));
 
 gulp.task('serve', () => {
   return browserSync.init({
@@ -158,6 +171,7 @@ gulp.task('watch', () => {
     src_assets_folder + 'sass/**/*.sass',
     src_assets_folder + 'scss/**/*.scss',
     src_assets_folder + 'less/**/*.less',
+    src_assets_folder + 'stylus/**/*.styl',
     src_assets_folder + 'js/**/*.js'
   ];
 
