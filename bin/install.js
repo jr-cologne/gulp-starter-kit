@@ -175,27 +175,29 @@ const copyAdditionalFiles = async directory => {
  * @return {Promise<boolean>,Promise<string>}
  */
 const install = async (projectName, dependencies, options) => {
-  console.log('npm init - Initializing your project...');
+  return new Promise(async (resolve, reject) => {
+    console.log('npm init - Initializing your project...');
 
-  const projectFolder = getProjectFolderFromName(projectName);
+    const projectFolder = getProjectFolderFromName(projectName);
 
-  if (! await init(projectFolder)) return false;
+    if (! await init(projectFolder)) reject(false);
 
-  console.log('npm init successful - Your npm package has been initialized');
+    console.log('npm init successful - Your npm package has been initialized');
 
-  console.log('Installing dependencies - This might take a few minutes...');
+    console.log('Installing dependencies - This might take a few minutes...');
 
-  if (! await installDependencies(dependencies, projectFolder)) return false;
+    if (! await installDependencies(dependencies, projectFolder)) reject(false);
 
-  console.log('Dependency installation successful - All dependencies have been installed');
+    console.log('Dependency installation successful - All dependencies have been installed');
 
-  console.log('Copying additional files...');
+    console.log('Copying additional files...');
 
-  if (!copyAdditionalFiles(projectFolder)) return false;
+    if (!copyAdditionalFiles(projectFolder)) reject(false);
 
-  console.log('Copying additional files successful');
+    console.log('Copying additional files successful');
 
-  return projectFolder;
+    resolve(projectFolder);
+  });
 };
 
 const options = getOptionsFromFlags(
@@ -207,7 +209,7 @@ if (!checkProjectName(projectName)) {
   return;
 }
 
-install(projectName, dependencies, options).then(() => {
+install(projectName, dependencies, options).then((projectFolder) => {
   console.log(`\nAll done!\nYour project has been set up to the ${ projectFolder } folder.\nHappy Coding!`);
 }).catch(() => {
   console.error('Oops, looks like something went wrong installing the Gulp Starter Kit.');
