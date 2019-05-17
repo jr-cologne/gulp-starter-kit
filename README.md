@@ -86,6 +86,14 @@ git clone https://github.com/jr-cologne/gulp-starter-kit.git your-project-name &
 ```
 
 ## Usage / FAQ
+### How to install the Gulp Starter Kit into the current working directory?
+You can install the Gulp Starter Kit into the current working directory by appending `--current-dir` to the end of the `npm init` command.
+
+Example:
+```
+npm init @jr-cologne/gulp-starter-kit your-project-name --current-dir
+```
+
 ### What kinds of build scripts does the Gulp Starter Kit offer?
 The Gulp Starter Kit offers two different build scripts:
 
