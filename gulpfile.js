@@ -5,7 +5,7 @@
  * @author JR Cologne <kontakt@jr-cologne.de>
  * @copyright 2019 JR Cologne
  * @license https://github.com/jr-cologne/gulp-starter-kit/blob/master/LICENSE MIT
- * @version v0.6.4-alpha
+ * @version v0.9.1-alpha
  * @link https://github.com/jr-cologne/gulp-starter-kit GitHub Repository
  * @link https://www.npmjs.com/package/@jr-cologne/create-gulp-starter-kit npm package site
  *
@@ -22,6 +22,8 @@ const gulp                      = require('gulp'),
       sourcemaps                = require('gulp-sourcemaps'),
       plumber                   = require('gulp-plumber'),
       sass                      = require('gulp-sass'),
+      less                      = require('gulp-less'),
+      stylus                    = require('gulp-stylus'),
       autoprefixer              = require('gulp-autoprefixer'),
       cssnano                   = require('gulp-cssnano'),
       babel                     = require('gulp-babel'),
@@ -30,6 +32,7 @@ const gulp                      = require('gulp'),
       concat                    = require('gulp-concat'),
       imagemin                  = require('gulp-imagemin'),
       browserSync               = require('browser-sync').create(),
+      pug                       = require('gulp-pug'),
 
       src_folder                = './src/',
       src_assets_folder         = src_folder + 'assets/',
@@ -38,12 +41,24 @@ const gulp                      = require('gulp'),
       node_modules_folder       = './node_modules/',
       dist_node_modules_folder  = dist_folder + 'node_modules/',
 
+      autoprefixer_options      = {
+        browsers: [ 'last 3 versions', '> 0.5%' ]
+      },
+
       node_dependencies         = Object.keys(require('./package.json').dependencies || {});
 
 gulp.task('clear', () => del([ dist_folder ]));
 
 gulp.task('html', () => {
   return gulp.src([ src_folder + '**/*.html' ], { base: src_folder })
+    .pipe(gulp.dest(dist_folder))
+    .pipe(browserSync.stream());
+});
+
+gulp.task('pug', () => {
+  return gulp.src([ src_folder + 'pug/**/!(_)*.pug' ], { base: src_folder + 'pug' })
+    .pipe(plumber())
+    .pipe(pug())
     .pipe(gulp.dest(dist_folder))
     .pipe(browserSync.stream());
 });
@@ -56,9 +71,31 @@ gulp.task('sass', () => {
     .pipe(sourcemaps.init())
       .pipe(plumber())
       .pipe(sass())
-      .pipe(autoprefixer({
-        browsers: [ 'last 3 versions', '> 0.5%' ]
-      }))
+      .pipe(autoprefixer(autoprefixer_options))
+      .pipe(cssnano())
+    .pipe(sourcemaps.write('.'))
+    .pipe(gulp.dest(dist_assets_folder + 'css'))
+    .pipe(browserSync.stream());
+});
+
+gulp.task('less', () => {
+  return gulp.src([ src_assets_folder + 'less/**/!(_)*.less'])
+    .pipe(sourcemaps.init())
+      .pipe(plumber())
+      .pipe(less())
+      .pipe(autoprefixer(autoprefixer_options))
+      .pipe(cssnano())
+    .pipe(sourcemaps.write('.'))
+    .pipe(gulp.dest(dist_assets_folder + 'css'))
+    .pipe(browserSync.stream());
+});
+
+gulp.task('stylus', () => {
+  return gulp.src([ src_assets_folder + 'stylus/**/!(_)*.styl'])
+    .pipe(sourcemaps.init())
+      .pipe(plumber())
+      .pipe(stylus())
+      .pipe(autoprefixer(autoprefixer_options))
       .pipe(cssnano())
     .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest(dist_assets_folder + 'css'))
@@ -103,16 +140,16 @@ gulp.task('vendor', () => {
     .pipe(browserSync.stream());
 });
 
-gulp.task('build', gulp.series('clear', 'html', 'sass', 'js', 'images', 'vendor'));
+gulp.task('build', gulp.series('clear', 'html', 'pug', 'sass', 'less', 'stylus', 'js', 'images', 'vendor'));
 
-gulp.task('dev', gulp.series('html', 'sass', 'js'));
+gulp.task('dev', gulp.series('html', 'pug', 'sass', 'less', 'stylus', 'js'));
 
 gulp.task('serve', () => {
   return browserSync.init({
     server: {
-      baseDir: [ 'dist' ],
-      port: 3000
+      baseDir: [ 'dist' ]
     },
+    port: 3000,
     open: false
   });
 });
@@ -130,8 +167,11 @@ gulp.task('watch', () => {
 
   const watch = [
     src_folder + '**/*.html',
+    src_folder + 'pug/**/*.pug',
     src_assets_folder + 'sass/**/*.sass',
     src_assets_folder + 'scss/**/*.scss',
+    src_assets_folder + 'less/**/*.less',
+    src_assets_folder + 'stylus/**/*.styl',
     src_assets_folder + 'js/**/*.js'
   ];
 

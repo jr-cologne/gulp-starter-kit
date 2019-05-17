@@ -1,12 +1,17 @@
 # Gulp Starter Kit
+[![Build Status](https://travis-ci.org/jr-cologne/gulp-starter-kit.svg?branch=master)](https://travis-ci.org/jr-cologne/gulp-starter-kit)
+[![npm](https://img.shields.io/npm/v/@jr-cologne/create-gulp-starter-kit.svg)](https://www.npmjs.com/package/@jr-cologne/create-gulp-starter-kit)
+
 A simple Gulp 4 Starter Kit for modern web development.
 
-## Use Cases
+## Features / Use Cases
 This Gulp Starter Kit provides a simple way of setting up a modern web development environment.
 Here is a list of the current features:
 
 - Copy HTML files from `src` to `dist` directory
-- Compile Sass/SCSS to CSS, autoprefix, minify CSS and put it inside `dist` directory
+- Compile Pug template files (`.pug`) from `src` to HTML files and put them inside `dist` directory
+- Compile CSS preprocessor code (Sass/SCSS, Less, Stylus) to CSS
+- Autoprefix and minify CSS and put it inside `dist` directory
 - Compile ES6+ to ES5, concatenate JS files and minify code
 - Compress and copy images into `dist` directory
 - Copy dependencies specified in `package.json` from `src/node_modules` directory into `node_modules` folder inside `dist` directory
@@ -37,6 +42,9 @@ These [npm](https://www.npmjs.com/) packages are used in the Gulp Starter Kit:
 - [gulp-uglify](https://www.npmjs.com/package/gulp-uglify)
 - [gulp-imagemin](https://www.npmjs.com/package/gulp-imagemin)
 - [webpack-stream](https://www.npmjs.com/package/webpack-stream)
+- [gulp-pug](https://www.npmjs.com/package/gulp-pug)
+- [gulp-less](https://www.npmjs.com/package/gulp-less)
+- [gulp-stylus](https://www.npmjs.com/package/gulp-stylus)
 
 For more information, take a look at the [package.json]((https://github.com/jr-cologne/gulp-starter-kit/blob/master/package.json)) file or visit the linked npm package sites.
 
@@ -84,8 +92,16 @@ The Gulp Starter Kit offers two different build scripts:
 1. `npm run build`: This is used to build all files and run all tasks without serving a development server and watching for changes.
 2. `npm start`: This is the normal development script used to build all files and run all tasks, but also to serve a development server and watch for changes.
 
-### How can I use SCSS instead of Sass?
-In case you prefer to use SCSS over Sass, you can simply create a new directory `src/assets/scss` which is where all your SCSS files have to be placed. After you have moved all your code to the new folder, just make sure to delete the `sass` directory and everything should work as expected.
+### How can I use another CSS preprocessor than Sass?
+In case you prefer to use one of the other supported CSS preprocessors over Sass, you can simply create a new directory `src/assets/css-processor-name` which is where all your CSS preprocessor files have to be placed.
+After you have moved all your code to the new folder, just make sure to delete the `sass` directory and everything should work as expected.
+
+Here's a list of the currently supported CSS preprocessors and the corresponding directory names:
+
+- Sass (`src/assets/sass`)
+- SCSS (`src/assets/scss`)
+- Less (`src/assets/less`)
+- Stylus (`src/assets/stylus`)
 
 ### What types of images are supported?
 The following types of images are currently supported:
