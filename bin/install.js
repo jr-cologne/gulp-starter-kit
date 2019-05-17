@@ -55,6 +55,8 @@ const getProjectFolderFromName = (projectName) => options.installInCurrentDir ? 
  */
 const init = projectFolder => {
   return new Promise((resolve, reject) => {
+    const projectPath = (projectFolder !== '') ? `${ projectFolder }/` : '';
+
     let initCommand = 'npm init -f';
 
     if (projectFolder !== '') {
@@ -72,7 +74,7 @@ const init = projectFolder => {
           reject(false);
         }
 
-        const packageJson = (projectFolder !== '') ? `${ projectFolder }/package.json` : 'package.json';
+        const packageJson = `${ projectPath }package.json`;
 
         fs.readFile(packageJson, (readErr, file) => {
           if (readErr) throw readErr;
@@ -88,16 +90,16 @@ const init = projectFolder => {
           'gulpfile.js',
           '.editorconfig'
         ].filter((file, index) =>
-          !fs.existsSync(path.join(__dirname, `../${ file }`)));
+          !fs.existsSync(`${ projectPath }${ file }`));
 
         for (let i = 0; i < filesToCopy.length; i++) {
           fs
             .createReadStream(path.join(__dirname, `../${ filesToCopy[i] }`))
-            .pipe(fs.createWriteStream(`${ projectFolder }/${ filesToCopy[i] }`));
+            .pipe(fs.createWriteStream(`${ projectPath }${ filesToCopy[i] }`));
         }
 
-        if (!fs.existsSync(`${ projectFolder }/.gitignore`)) {
-          fs.writeFile(`${projectFolder}/.gitignore`, gitignore, writeErr => writeErr || true);
+        if (!fs.existsSync(`${ projectPath }.gitignore`)) {
+          fs.writeFile(`${ projectPath }.gitignore`, gitignore, writeErr => writeErr || true);
         }
 
         resolve(true);
