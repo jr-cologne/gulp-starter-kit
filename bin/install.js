@@ -72,7 +72,7 @@ const init = projectFolder => {
           reject(false);
         }
 
-        const packageJson = `${ projectFolder }/package.json`;
+        const packageJson = (projectFolder !== '') ? `${ projectFolder }/package.json` : 'package.json';
 
         fs.readFile(packageJson, (readErr, file) => {
           if (readErr) throw readErr;
