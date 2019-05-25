@@ -25,7 +25,7 @@ const gulp                      = require('gulp'),
       less                      = require('gulp-less'),
       stylus                    = require('gulp-stylus'),
       autoprefixer              = require('gulp-autoprefixer'),
-      cssnano                   = require('gulp-cssnano'),
+      minifyCss                 = require('gulp-clean-css'),
       babel                     = require('gulp-babel'),
       webpack                   = require('webpack-stream'),
       uglify                    = require('gulp-uglify'),
@@ -78,7 +78,7 @@ gulp.task('sass', () => {
       .pipe(plumber())
       .pipe(sass())
       .pipe(autoprefixer(autoprefixer_options))
-      .pipe(cssnano())
+      .pipe(minifyCss())
     .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest(dist_assets_folder + 'css'))
     .pipe(browserSync.stream());
@@ -90,7 +90,7 @@ gulp.task('less', () => {
       .pipe(plumber())
       .pipe(less())
       .pipe(autoprefixer(autoprefixer_options))
-      .pipe(cssnano())
+      .pipe(minifyCss())
     .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest(dist_assets_folder + 'css'))
     .pipe(browserSync.stream());
@@ -102,7 +102,7 @@ gulp.task('stylus', () => {
       .pipe(plumber())
       .pipe(stylus())
       .pipe(autoprefixer(autoprefixer_options))
-      .pipe(cssnano())
+      .pipe(minifyCss())
     .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest(dist_assets_folder + 'css'))
     .pipe(browserSync.stream());
