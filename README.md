@@ -111,6 +111,20 @@ Here's a list of the currently supported CSS preprocessors and the corresponding
 - Less (`src/assets/less`)
 - Stylus (`src/assets/stylus`)
 
+### How can I specify for which browsers CSS code should be autoprefixed?
+The recommended way of specifying which browsers should be targeted by the CSS autoprefixer is to add a `browserslist` key to `package.json`:
+
+```json
+{
+  "browserslist": [
+    "last 3 versions",
+    "> 0.5%"
+  ]
+}
+```
+
+You can find [more information on that topic](https://github.com/postcss/autoprefixer#browsers) in the README file of the employed [PostCSS plugin](https://github.com/postcss/autoprefixer).
+
 ### What types of images are supported?
 The following types of images are currently supported:
 
