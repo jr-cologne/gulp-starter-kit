@@ -1,6 +1,6 @@
 {
   "name": "@jr-cologne/create-gulp-starter-kit",
-  "version": "0.10.3-beta",
+  "version": "0.10.4-beta",
   "description": "A simple Gulp 4 Starter Kit for modern web development.",
   "keywords": [
     "gulp",
@@ -39,7 +39,7 @@
   "devDependencies": {
     "@babel/core": "^7.4.5",
     "@babel/preset-env": "^7.4.5",
-    "browser-sync": "^2.26.5",
+    "browser-sync": "^2.26.7",
     "del": "^4.1.1",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^6.1.0",
