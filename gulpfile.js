@@ -5,7 +5,7 @@
  * @author JR Cologne <kontakt@jr-cologne.de>
  * @copyright 2019 JR Cologne
  * @license https://github.com/jr-cologne/gulp-starter-kit/blob/master/LICENSE MIT
- * @version v0.10.4-beta
+ * @version v0.10.5-beta
  * @link https://github.com/jr-cologne/gulp-starter-kit GitHub Repository
  * @link https://www.npmjs.com/package/@jr-cologne/create-gulp-starter-kit npm package site
  *
@@ -41,10 +41,6 @@ const gulp                      = require('gulp'),
       node_modules_folder       = './node_modules/',
       dist_node_modules_folder  = dist_folder + 'node_modules/',
 
-      autoprefixer_options      = {
-        browsers: [ 'last 3 versions', '> 0.5%' ]
-      },
-
       node_dependencies         = Object.keys(require('./package.json').dependencies || {});
 
 gulp.task('clear', () => del([ dist_folder ]));
@@ -77,7 +73,7 @@ gulp.task('sass', () => {
     .pipe(sourcemaps.init())
       .pipe(plumber())
       .pipe(sass())
-      .pipe(autoprefixer(autoprefixer_options))
+      .pipe(autoprefixer())
       .pipe(minifyCss())
     .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest(dist_assets_folder + 'css'))
@@ -89,7 +85,7 @@ gulp.task('less', () => {
     .pipe(sourcemaps.init())
       .pipe(plumber())
       .pipe(less())
-      .pipe(autoprefixer(autoprefixer_options))
+      .pipe(autoprefixer())
       .pipe(minifyCss())
     .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest(dist_assets_folder + 'css'))
@@ -101,7 +97,7 @@ gulp.task('stylus', () => {
     .pipe(sourcemaps.init())
       .pipe(plumber())
       .pipe(stylus())
-      .pipe(autoprefixer(autoprefixer_options))
+      .pipe(autoprefixer())
       .pipe(minifyCss())
     .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest(dist_assets_folder + 'css'))
