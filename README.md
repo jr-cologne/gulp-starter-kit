@@ -2,7 +2,7 @@
 [![Build Status](https://travis-ci.org/jr-cologne/gulp-starter-kit.svg?branch=master)](https://travis-ci.org/jr-cologne/gulp-starter-kit)
 [![npm](https://img.shields.io/npm/v/@jr-cologne/create-gulp-starter-kit.svg)](https://www.npmjs.com/package/@jr-cologne/create-gulp-starter-kit)
 
-A simple Gulp 4 Starter Kit for modern web development.
+> A simple Gulp 4 Starter Kit for modern web development.
 
 ## Features / Use Cases
 This Gulp Starter Kit provides a simple way of setting up a modern web development environment.
@@ -46,7 +46,7 @@ These [npm](https://www.npmjs.com/) packages are used in the Gulp Starter Kit:
 - [gulp-less](https://www.npmjs.com/package/gulp-less)
 - [gulp-stylus](https://www.npmjs.com/package/gulp-stylus)
 
-For more information, take a look at the [package.json]((https://github.com/jr-cologne/gulp-starter-kit/blob/master/package.json)) file or visit the linked npm package sites.
+For more information, take a look at the [package.json](package.json) file or visit the linked npm package sites.
 
 ## Getting Started
 In order to get started, make sure you are meeting all requirements listed above.
@@ -64,7 +64,7 @@ For this, just follow these steps:
 
 In case you are lazy, just use this command:
 
-```
+```bash
 npm init @jr-cologne/gulp-starter-kit your-project-name && cd your-project-name && npm start
 ```
 
@@ -81,7 +81,7 @@ Then, follow these instructions:
 
 If you are lazy, just do everything at once:
 
-```
+```bash
 git clone https://github.com/jr-cologne/gulp-starter-kit.git your-project-name && cd your-project-name && npm install && npm start
 ```
 
@@ -90,7 +90,7 @@ git clone https://github.com/jr-cologne/gulp-starter-kit.git your-project-name &
 You can install the Gulp Starter Kit into the current working directory by appending `--current-dir` to the end of the `npm init` command.
 
 Example:
-```
+```bash
 npm init @jr-cologne/gulp-starter-kit your-project-name --current-dir
 ```
 
@@ -135,6 +135,14 @@ import axios from 'axios';
 ## Contributing
 Feel free to contribute to this project!
 Any kinds of contributions are highly appreciated!
+
+Please make sure to **follow the process below** in order to contribute to this project:
+1. **Open an Issue** to describe what you are about to do. You should make sure to get feedback as early as possile to ensure your work does not end up as waisted time.
+2. **Fork this repository** by clicking the fork button at the top of this page.
+3. Clone your newly created fork (`git clone https://github.com/your-github-username/gulp-starter-kit.git`).
+4. Make your changes and commit them to your forked repository.
+6. Once finished, **open a detailed Pull Request** describing your changes.
+7. Wait for your PR to be accepted and merged.
 
 ## Versioning
 This project uses the rules of semantic versioning. For more information, visit [semver.org](https://semver.org/).
