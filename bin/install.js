@@ -212,7 +212,7 @@ if (!checkProjectName(projectName)) {
 }
 
 install(projectName, dependencies, options).then((projectFolder) => {
-  console.log(`\nAll done!\nYour project has been set up to the ${ projectFolder } folder.\nHappy Coding!`);
+  console.log(`\nAll done!\nYour project has been set up to the ${ projectFolder ? projectFolder : 'current' } folder.\nHappy Coding!`);
 }).catch(() => {
   console.error('Oops, looks like something went wrong installing the Gulp Starter Kit.');
 });
