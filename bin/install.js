@@ -158,9 +158,11 @@ const installDependencies = (dependencies, directory) => {
  * @return {Boolean}
  */
 const copyAdditionalFiles = async directory => {
+  const projectPath = (directory !== '') ? `${ directory }/` : '';
+
   try {
     await fs
-      .copy(path.join(__dirname, '../src'), `${ directory }/src`);
+      .copy(path.join(__dirname, '../src'), `${ projectPath }src`);
     return true;
   } catch (err) {
     console.error(err);
