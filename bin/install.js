@@ -158,9 +158,11 @@ const installDependencies = (dependencies, directory) => {
  * @return {Boolean}
  */
 const copyAdditionalFiles = async directory => {
+  const projectPath = (directory !== '') ? `${ directory }/` : '';
+
   try {
     await fs
-      .copy(path.join(__dirname, '../src'), `${ directory }/src`);
+      .copy(path.join(__dirname, '../src'), `${ projectPath }src`);
     return true;
   } catch (err) {
     console.error(err);
@@ -212,7 +214,7 @@ if (!checkProjectName(projectName)) {
 }
 
 install(projectName, dependencies, options).then((projectFolder) => {
-  console.log(`\nAll done!\nYour project has been set up to the ${ projectFolder } folder.\nHappy Coding!`);
+  console.log(`\nAll done!\nYour project has been set up to the ${ projectFolder ? projectFolder : 'current' } folder.\nHappy Coding!`);
 }).catch(() => {
   console.error('Oops, looks like something went wrong installing the Gulp Starter Kit.');
 });
