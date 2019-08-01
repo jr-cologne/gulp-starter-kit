@@ -26,7 +26,7 @@ If applicable, add screenshots to help explain your problem.
 **Environment (please complete the following information):**
 - Node Version: [e.g. 10]
 - Gulp Version: [e.g. 4.0.2]
-- Gulp Starter Kit Version: [e.g. 0.10.7-beta]
+- Gulp Starter Kit Version: [e.g. 0.10.8-beta]
 - Version of any other affected dependency: [e.g. browser-sync@2.26.5]
 
 **OS (please complete the following information):**
