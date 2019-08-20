@@ -1,6 +1,6 @@
 {
   "name": "@jr-cologne/create-gulp-starter-kit",
-  "version": "0.10.8-beta",
+  "version": "0.10.9-beta",
   "description": "A simple Gulp 4 Starter Kit for modern web development.",
   "keywords": [
     "gulp",
