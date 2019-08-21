@@ -1,5 +1,4 @@
 # Gulp Starter Kit
-[![Build Status](https://travis-ci.org/jr-cologne/gulp-starter-kit.svg?branch=master)](https://travis-ci.org/jr-cologne/gulp-starter-kit)
 [![npm](https://img.shields.io/npm/v/@jr-cologne/create-gulp-starter-kit.svg)](https://www.npmjs.com/package/@jr-cologne/create-gulp-starter-kit)
 
 > A simple Gulp 4 Starter Kit for modern web development.
