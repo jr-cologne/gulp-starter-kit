@@ -1,6 +1,8 @@
 name: Publish npm package
 
-on: release
+on:
+  release:
+    types: [ published ]
 
 jobs:
   publish-npm:
