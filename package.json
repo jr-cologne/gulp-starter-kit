@@ -59,5 +59,8 @@
   "dependencies": {
     "axios": "^0.19.0",
     "fs-extra": "^8.1.0"
+  },
+  "engines": {
+    "node": ">=8"
   }
 }
