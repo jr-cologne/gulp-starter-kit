@@ -20,7 +20,7 @@ Here is a list of the current features:
 ## Requirements
 This should be installed on your computer in order to get up and running:
 
-- [Node.js](https://nodejs.org/en/)
+- [Node.js](https://nodejs.org/en/) (Required node version is >= 8.0)
 - [Gulp 4](https://gulpjs.com/)
 
 ## Dependencies
