@@ -3,7 +3,7 @@
  *
  * @package @jr-cologne/create-gulp-starter-kit
  * @author JR Cologne <kontakt@jr-cologne.de>
- * @copyright 2019 JR Cologne
+ * @copyright 2020 JR Cologne
  * @license https://github.com/jr-cologne/gulp-starter-kit/blob/master/LICENSE MIT
  * @version v0.10.11-beta
  * @link https://github.com/jr-cologne/gulp-starter-kit GitHub Repository
@@ -33,6 +33,7 @@ const gulp                      = require('gulp'),
       imagemin                  = require('gulp-imagemin'),
       browserSync               = require('browser-sync').create(),
       pug                       = require('gulp-pug'),
+      dependents                = require('gulp-dependents'),
 
       src_folder                = './src/',
       src_assets_folder         = src_folder + 'assets/',
@@ -72,6 +73,7 @@ gulp.task('sass', () => {
   ], { since: gulp.lastRun('sass') })
     .pipe(sourcemaps.init())
       .pipe(plumber())
+      .pipe(dependents())
       .pipe(sass())
       .pipe(autoprefixer())
       .pipe(minifyCss())

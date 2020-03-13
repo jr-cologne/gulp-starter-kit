@@ -34,6 +34,7 @@ These [npm](https://www.npmjs.com/) packages are used in the Gulp Starter Kit:
 - [gulp-autoprefixer](https://www.npmjs.com/package/gulp-autoprefixer)
 - [gulp-babel](https://www.npmjs.com/package/gulp-babel)
 - [gulp-concat](https://www.npmjs.com/package/gulp-concat)
+- [gulp-dependents](https://www.npmjs.com/package/gulp-dependents)
 - [gulp-clean-css](https://www.npmjs.com/package/gulp-clean-css)
 - [gulp-plumber](https://www.npmjs.com/package/gulp-plumber)
 - [gulp-sass](https://www.npmjs.com/package/gulp-sass)
